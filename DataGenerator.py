@@ -44,8 +44,7 @@ class DataGenerator():
         tel+= str(random.randint(0,9))
         return tel
     def getproduct(self):
-        return random.choice(self.__listProduct)       
-    
+        return random.choice(self.__listProduct)           
     def __makeBodyEmail(self,body):
         email = body
         listchar = ['','-','.','_','#']
@@ -60,7 +59,6 @@ class DataGenerator():
         elif ans == 3:
             email+= self.getcity()+cr
         return email
-
     def getEmail(self):
         email = ""
         for x in range(0,2):
