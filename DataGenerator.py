@@ -67,13 +67,13 @@ class DataGenerator():
         return email.replace(' ','')
 
 # Test 
-if __name__ == "__main__":
-       p =  DataGenerator()
-       print(p.getnameboy())
-       print(p.getnamegirl())
-       print(p.getage(1,100))
-       print(p.getcity())
-       print(p.gettelephone())
-       print(p.getEmail())
+# if __name__ == "__main__":
+#        p =  DataGenerator()
+#        print(p.getnameboy())
+#        print(p.getnamegirl())
+#        print(p.getage(1,100))
+#        print(p.getcity())
+#        print(p.gettelephone())
+#        print(p.getEmail())
        
       

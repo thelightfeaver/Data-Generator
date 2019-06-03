@@ -1,6 +1,9 @@
 class Convert():
     def __init__(self):
-    
-
-    def Commilas(self,data):
-        return "'"+self.data+"'"
+        self.__rs = ""
+    def marks(self,data):
+        self.__rs = "'"+data+"'"
+        return self.__rs
+    def paratheis(self,data):
+        self.__rs = "("+data+")"
+        return
