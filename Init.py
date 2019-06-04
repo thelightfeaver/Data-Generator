@@ -61,7 +61,9 @@ class Init():
             elif rs == 0:
                 ans = int(input("\nTo type count:"))
                 self.__count = ans
+                self.__clearScreen()
                 self.addColumns()
+                
             elif rs == 100:
                 self.__clearScreen()
                 self.menuMain()
@@ -69,6 +71,7 @@ class Init():
                 if len(self.__column) > 0 and self.__count > 0:
                     self.__build()
                 else:
+                    self.__clearScreen()
                     print("Error")
                     print(len(self.__column) + "" + len(self.__count))
                     self.addColumns()
