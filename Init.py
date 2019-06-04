@@ -117,7 +117,7 @@ class Init():
                 ans = cv.marks(dg.getCity())
         elif data == 5:
             if self.__type == 1:
-                ans = cv.marks(dg.getAge(32,23))
+                ans = dg.getAge(1,23)
         elif data == 6:
             if self.__type == 1:
                 ans = cv.marks(dg.getEmail())
