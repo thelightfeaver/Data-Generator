@@ -82,6 +82,7 @@ class Init():
        
     def __build(self):
         data = []
+        cv = Convert()
         for l in range(0,self.__count):
             temp = ""
             valor =0
@@ -92,7 +93,8 @@ class Init():
                     temp += str(self.__selectOption(x))+""
                 else:
                     temp += str(self.__selectOption(x))+","
-            data.append(temp)
+            
+            data.append(cv.paratheis(temp))
         
         
         self.__buildFile(data)
