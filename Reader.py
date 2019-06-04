@@ -3,7 +3,7 @@ from docx import Document
 import csv
 listm = []
 listf = []
-def ReadDocuement():
+def ReadDocuementTable():
     wordDoc = Document('C:/Users/pc/Desktop/data.docx')
     for table in wordDoc.tables:
         for row in table.rows:
@@ -19,22 +19,24 @@ def ReadDocuement():
                 print ('Error')
 
 def WriteDocuemt():
-    file = open('testfile.txt','w') 
+    file = open('Convert.txt','w') 
     for x in listm:
         file.write(x)
     file.write("\n\n\n\n\n")
     for x in listf:
         file.write(x)
+def readData():
+    file = open('C:/Users/pc/Desktop/PYTHON/ConvertData.txt','r')
+    listm = file.readlines()
+    print(len(listm))
+    print(listm)
+    c= 0
+    for x in listm:
+        print("'"+x.lower().replace('\n','')+"'",end=",")
 
-file = open('C:/Users/pc/Desktop/PYTHON/testfile.txt','r')
-listm = file.readlines()
-print(len(listm))
-print(listm)
-c= 0
-for x in listm:
-    print("'"+x.lower().replace('\n','')+"'",end=",")
+        if c == 9:
+            c = 0
+        else:
+            c+=1
 
-    if c == 9:
-        c = 0
-    else:
-        c+=1
+readData()

@@ -13,6 +13,7 @@ class Init():
 
 
     def menuMain(self):
+        self.__clearScreen()
         print("1-Sql")
         print("2-CVS")
         print("3-Exit")
@@ -20,21 +21,21 @@ class Init():
             rs = int(input("Select you option:"))
             if rs == 1:
                 self.__type =1
-                self.__clear()
+                self.__clearScreen()
                 self.addColumns()
             elif rs == 2:
                 self.__type = 2
-                self.__clear()
+                self.__clearScreen()
                 self.addColumns()
             elif rs == 3:
                 self.__type = 3
-                self.__clear()
+                self.__clearScreen()
             else:
-                self.__clear()
+                self.__clearScreen()
                 self.menuMain()
         except:
             print("Write correct")
-            self.__clear()
+            self.__clearScreen()
             self.menuMain()
             
 
@@ -54,7 +55,7 @@ class Init():
         try:
             rs = int(input("\nSelect the data:"))
             if rs <= 8 and 8 >= rs and rs != 0:
-                self.__clear()
+                self.__clearScreen()
                 self.__column.append(int(rs))
                 self.addColumns()
             elif rs == 0:
@@ -62,7 +63,7 @@ class Init():
                 self.__count = ans
                 self.addColumns()
             elif rs == 100:
-                self.__clear()
+                self.__clearScreen()
                 self.menuMain()
             elif rs == 99:
                 if len(self.__column) > 0 and self.__count > 0:
@@ -72,11 +73,11 @@ class Init():
                     print(len(self.__column) + "" + len(self.__count))
                     self.addColumns()
             else:
-                self.__clear()
+                self.__clearScreen()
                 print("Error")
                 self.addColumns()
         except Exception as e:
-            self.__clear()
+            self.__clearScreen()
             print(e)
             self.addColumns()
        
@@ -88,10 +89,10 @@ class Init():
             valor =0
             for x in self.__column:
                 
-                if valor == len(self.__column):
-                    valor += 1
+                if valor == len(self.__column)-1:
                     temp += str(self.__selectOption(x))+""
                 else:
+                    valor += 1
                     temp += str(self.__selectOption(x))+","
             
             data.append(cv.paratheis(temp))
@@ -133,15 +134,25 @@ class Init():
         
     
     def __buildFile(self,data):
-        file = open("final.txt",'w')
+        file = open("final.sql",'w')
+        c =0
         for x in data:
-            file.write(x+"\n")
+            if c == len(data)-1:
+                file.write(x+"\n")
+            else:
+                c+=1
+                file.write(x+",\n")
+                
         file.close()
-        self.__clear()
+        self.__clearScreen()
         self.menuMain()
     
 
-    def __clear(self):
+    def ___clearArg(self):
+        self.__column = []
+        self.__type = 0
+        self.__count = 0
+    def __clearScreen(self):
         if os.name == "nt":
             os.system("cls")
         elif os.name =="posix":
