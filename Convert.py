@@ -6,4 +6,7 @@ class Convert():
         return self.__rs
     def paratheis(self,data):
         self.__rs = "("+data+")"
-        return
+        return self.__rs
+    def marksDouble(self,data):
+        self.__rs = '"'+data+ '"'
+        return self.__rs
