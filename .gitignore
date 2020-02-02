@@ -3,3 +3,4 @@
 /Reader.py
 /*.sql
 /*.json
+/_pycache/*.pyc
