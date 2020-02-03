@@ -28,12 +28,16 @@ class DataGenerator():
       
     def getCity(self):
         return random.choice(self.__listCity)
+    
     def getNameGirl(self):
         return random.choice(self.__listnameF)
+    
     def getNameBoy(self):
         return random.choice(self.__listnameM)
+    
     def getAge(self,mn,mx):
         return random.randint(mn,mx)
+    
     def getTelephone(self):
         tel = ''
         tel+= str(random.randint(1,9))
@@ -47,8 +51,10 @@ class DataGenerator():
         tel+= str(random.randint(0,9))
         tel+= str(random.randint(0,9))
         return tel
+    
     def getProduct(self):
         return random.choice(self.__listProduct)           
+    
     def __makeBodyEmail(self,body):
         email = body
         listchar = ['','-','.','_','#']
@@ -63,17 +69,17 @@ class DataGenerator():
         elif ans == 3:
             email+= self.getCity()+cr
         return email
+    
     def getEmail(self):
         email = ""
         for x in range(0,2):
             email += self.__makeBodyEmail(email)
         email+= random.choice(self.__listEmail)
         return email.replace(' ','')
+    
     def getSurname(self):
         return random.choice(self.__listSurname)
-#Test 
-if __name__ == "__main__":
-       p =  DataGenerator()
+
        
        
       

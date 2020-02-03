@@ -1,167 +1,65 @@
 import os
-import logging
+from sys import argv
 from DataGenerator import DataGenerator
 from Convert import Convert
 
+
 class Init():
+    
+    
+    def __init__(self,arg):
+        
+        self.__typefile = ['json','sql','csv']
+        self.__typeoption = ['1','2']
+        self.__arg = arg[1:]
+        
+        self.__type =  self.__arg[:1][0] if self.__arg[:1][0] in self.__typefile else ""
+        self.__count = self.__arg[-1:][0] if str(self.__arg[-1:][0]) in self.__typeoption else 0 
+        self.__options = self.__arg[1:-1] 
 
+        self.Init()
+
+    def Init(self):
+        
+        print(self.__type)
+        print(self.__count)
+        print(self.__options)
+        # if len(self.__arg) >= 3 :
+            
+        #     try:
+        #         if self.__count and self.__aptions and self.__type:
+        #             file = open("data.{}".format(self.__type),"w+")
+        #             for i in range(self.__count):
+        #                 file.write("231231","\n")
+                    
+        #     except:
+        #         Help
+        # else:
+        #     Help()
    
-    def __init__(self):
-        self.__column = []
-        self.__type = 0
-        self.__count = 0
+    def Help():
 
-
-    def menuMain(self):
-        self.__clearScreen()
-        print("1-Sql")
-        print("2-CVS")
-        print("3-Exit")
-        try:
-            rs = int(input("Select you option:"))
-            if rs == 1:
-                self.__type =1
-                self.__clearScreen()
-                self.addColumns()
-            elif rs == 2:
-                self.__type = 2
-                self.__clearScreen()
-                self.addColumns()
-            elif rs == 3:
-                self.__type = 3
-                self.__clearScreen()
-            else:
-                self.__clearScreen()
-                self.menuMain()
-        except:
-            print("Write correct")
-            self.__clearScreen()
-            self.menuMain()
-            
-
-    def addColumns(self):
-        rs = ""
-        print("1-Name Boy")
-        print("2-Name Girl")
-        print("3-Surname")
-        print("4-Country")
-        print("5-Values Integer")
-        print("6-Email")
-        print("7-Product")
-        print("8-Telephone")
-        print("0-Count")
-        print("99-Build")
-        print("100-Back")
-        try:
-            rs = int(input("\nSelect the data:"))
-            if rs <= 8 and 8 >= rs and rs != 0:
-                self.__clearScreen()
-                self.__column.append(int(rs))
-                self.addColumns()
-            elif rs == 0:
-                ans = int(input("\nTo type count:"))
-                self.__count = ans
-                self.__clearScreen()
-                self.addColumns()
-                
-            elif rs == 100:
-                self.__clearScreen()
-                self.menuMain()
-            elif rs == 99:
-                if len(self.__column) > 0 and self.__count > 0:
-                    self.__build()
-                else:
-                    self.__clearScreen()
-                    print("Error")
-                    print(len(self.__column) + "" + len(self.__count))
-                    self.addColumns()
-            else:
-                self.__clearScreen()
-                print("Error")
-                self.addColumns()
-        except Exception as e:
-            self.__clearScreen()
-            print(e)
-            self.addColumns()
-       
-    def __build(self):
-        data = []
-        cv = Convert()
-        for l in range(0,self.__count):
-            temp = ""
-            valor =0
-            for x in self.__column:
-                
-                if valor == len(self.__column)-1:
-                    temp += str(self.__selectOption(x))+""
-                else:
-                    valor += 1
-                    temp += str(self.__selectOption(x))+","
-            
-            data.append(cv.paratheis(temp))
+        print("*****************************************")
+        print("*                                       *")
+        print("*            Data Generator X1000       *")
+        print("*                                       *")
+        print("*****************************************")
+        print("Note: File name can UPPER and lower!")
+        print("Always the item last'll be acount records!")
+        print("SQL")
+        print("CVS")
+        print("JSON")
+        print("Options\n")
+        print("1:Man Name")
+        print("2:Woman Name")
+        print("3:Surname")
+        print("4:Country")
+        print("?-?:Values Integer")
+        print("6:Email")
+        print("7:Product")
+        print("9:Telephone\n")
+        print("Example \nsql 1 2 4 1-100 10")
         
-        
-        self.__buildFile(data)
-
-
-
-    def __selectOption(self,data):
-        ans = None
-        dg = DataGenerator()
-        cv = Convert()
-        if data == 1 :
-            if self.__type == 1:
-                ans = cv.marks(dg.getNameBoy())
-        elif data == 2:
-            if self.__type == 1:
-                ans = cv.marks(dg.getNameGirl())
-        elif data == 3:
-            if self.__type == 1:
-                ans = cv.marks(dg.getSurname())
-        elif data == 4:
-            if self.__type == 1:
-                ans = cv.marks(dg.getCity())
-        elif data == 5:
-            if self.__type == 1:
-                ans = dg.getAge(1,23)
-        elif data == 6:
-            if self.__type == 1:
-                ans = cv.marks(dg.getEmail())
-        elif data == 7:
-            if self.__type == 1:
-                ans = cv.marks(dg.getProduct())
-        elif data == 8:
-            if self.__type == 1:
-                ans = cv.marks(dg.getTelephone())
-        return ans
-        
-    
-    def __buildFile(self,data):
-        file = open("final.sql",'w')
-        c =0
-        for x in data:
-            if c == len(data)-1:
-                file.write(x+"\n")
-            else:
-                c+=1
-                file.write(x+",\n")
-                
-        file.close()
-        self.__clearScreen()
-        self.menuMain()
-    
-
-    def ___clearArg(self):
-        self.__column = []
-        self.__type = 0
-        self.__count = 0
-    def __clearScreen(self):
-        if os.name == "nt":
-            os.system("cls")
-        elif os.name =="posix":
-            os.system("clear")
-    
-       
 if __name__ == "__main__":
-    p = Init()
-    p.menuMain()
+    p = Init(argv)
+    
