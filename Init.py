@@ -31,7 +31,7 @@ class Init():
                         file.write("231231","\n")
                     
             except:
-                Help
+                Help()
         else:
             Help()
    
