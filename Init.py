@@ -31,9 +31,9 @@ class Init():
                         file.write("231231","\n")
                     
             except:
-                Help()
+                self.Help()
         else:
-            Help()
+            self.Help()
    
     def Help():
 
