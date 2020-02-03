@@ -1,6 +1,6 @@
-/_pycache
+_pycache_/
 /ConvertData.txt
 /Reader.py
 /*.sql
 /*.json
-/_pycache/*.pyc
+/*.csv
