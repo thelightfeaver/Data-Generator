@@ -14,28 +14,26 @@ class Init():
         self.__arg = arg[1:]
         
         self.__type =  self.__arg[:1][0] if self.__arg[:1][0] in self.__typefile else ""
-        self.__count = self.__arg[-1:][0] if str(self.__arg[-1:][0]) in self.__typeoption else 0 
+        self.__count = list(filter(lambda x:self.__arg[-1:][0] is x,self.__arg))[0]
         self.__options = self.__arg[1:-1] 
 
         self.Init()
 
     def Init(self):
         
-        print(self.__type)
-        print(self.__count)
-        print(self.__options)
-        # if len(self.__arg) >= 3 :
+       
+        if len(self.__arg) >= 3 :
             
-        #     try:
-        #         if self.__count and self.__aptions and self.__type:
-        #             file = open("data.{}".format(self.__type),"w+")
-        #             for i in range(self.__count):
-        #                 file.write("231231","\n")
+            try:
+                if self.__count and self.__aptions and self.__type:
+                    file = open("data.{}".format(self.__type),"w+")
+                    for i in range(self.__count):
+                        file.write("231231","\n")
                     
-        #     except:
-        #         Help
-        # else:
-        #     Help()
+            except:
+                Help
+        else:
+            Help()
    
     def Help():
 
