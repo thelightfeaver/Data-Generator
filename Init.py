@@ -35,7 +35,7 @@ class Init():
         else:
             self.Help()
    
-    def Help():
+    def Help(self):
 
         print("*****************************************")
         print("*                                       *")
