@@ -15,7 +15,7 @@ class TypeData(Enum):
     
    
  
-class DataGenerator():
+class GeneratorData():
 
     def __init__(self):
 
