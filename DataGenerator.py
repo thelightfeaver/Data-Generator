@@ -95,13 +95,13 @@ class DataGenerator():
         cr = random.choice(listchar)
         ans = random.randint(0,3)
         if ans == 0:
-            email+= self.getNameBoy()+cr
+            email+= self.__get_name_boy()+cr
         elif ans == 1:
-            email+= self.getNameGirl()+cr
+            email+= self.__get_name_girl()+cr
         elif ans == 2:
             email+= str(random.randint(0,1000000))+cr
         elif ans == 3:
-            email+= self.getCity()+cr
+            email+= self.__get_city()+cr
         return email
     
     def __get_email(self):

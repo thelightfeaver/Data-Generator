@@ -10,7 +10,7 @@ class Init():
     
     def __init__(self,arg):
         
-        self.__data = Data(arg);
+        self.__data = Data(arg)
         self._dg = dg()
         self._co = co()
         self.__start()
