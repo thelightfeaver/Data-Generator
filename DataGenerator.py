@@ -15,7 +15,7 @@ class TypeData(Enum):
     
    
  
-class GeneratorData():
+class DataGenerator():
 
     def __init__(self):
 
@@ -114,6 +114,3 @@ class GeneratorData():
     def __get_surname(self):
         return random.choice(self.__listSurname)
 
-if __name__ == "__main__":
-    x = DataGenerator()
-    print(x.choose_data(['1']))
