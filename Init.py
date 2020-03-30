@@ -3,7 +3,7 @@ from sys import argv
 from DataGenerator import DataGenerator as dg , TypeData
 import io
 from Convert import Convert as co, Sign
-
+import json
 
 class Init():
     
@@ -13,43 +13,60 @@ class Init():
         self.__data = Data(arg)
         self._dg = dg()
         self._co = co()
+
         self.__start()
 
-    def __select_op(self,val = None):
-        
-
+    def _convert_array(self,val = None):        
         return val if type(val).__name__ == 'list' else [val]
     
-    def __select_op2(self,val = None):
-        return  Sign.Comma if val in Data.Options  else Sign.Nothing
+    def _prepare_to_sql(self,val = None):
+        return  Sign.Comma if val in Data.options_sql  else Sign.Nothing
 
+    
     def __build_data(self):
-        cnt = ""
         if self.__data.typefile == 'sql':
-           
+            cnt = ""
+            
             for index,val in enumerate(self.__data.options):
                 
                 if len(self.__data.options) -1> index:
-                    cnt+= str(self._co.to_sign(self._dg.choose_data(self.__select_op(val)),self.__select_op2(val))) +","  
+                    cnt+= str(self._co.to_sign(self._dg.choose_data(self._convert_array(val)),
+                            self._prepare_to_sql(val))) +","  
                 else:
-                    cnt+= str(self._co.to_sign(self._dg.choose_data(self.__select_op(val)),self.__select_op2(val))) 
+                    cnt+= str(self._co.to_sign(self._dg.choose_data(self._convert_array(val)),
+                            self._prepare_to_sql(val))) 
 
             return self._co.to_sign(cnt,Sign.Parentheses)
        
-
+        elif self.__data.typefile == 'json':
+            cnt = []
+            for _ in range(0,self.__data.count):
+                tmp = {}
+                for index,val in enumerate(self.__data.options):
+                    key = str(Data.options_json[ '-' if type(val).__name__ == 'list' else val ])
+                    array = self._convert_array(val)
+                    result =str(self._dg.choose_data(array))
+                    tmp[key] = result
+                cnt.append(tmp)
+            return cnt
     def __build_file(self):
 
         if self.__data.typefile == 'sql':
             
             file = open('result.sql','w')
-            for _ in range(0,self.__data.count):
+            for x in range(0,self.__data.count):
                 
-                if self.__data.count -1 > _:
+                if self.__data.count -1 > x:
                     file.write(self.__build_data()+",\n")
                 else:
                     file.write(self.__build_data())
 
             file.close()
+        elif self.__data.typefile == "json":
+            with open("result.json","w")  as file:
+                result = self.__build_data()
+                json.dump(result,file)
+
 
     def __start(self):
        
@@ -57,8 +74,9 @@ class Init():
             try:
                 self.__build_file()          
             except Exception as e:
-                # print(e.args)
-                self.__help()
+                print(e.args)
+                # self.__help()
+
         else:
             self.__help()
         
@@ -87,8 +105,16 @@ class Init():
         
 class Data():
 
+    options_sql = ['1','2','3','4','6','7','8']
     Files = ['json','sql','csv']
-    Options = ['1','2','3','4','6','7','8']
+    options_json = {'1':'name',
+                '2':'name',
+                '3':'surmane',
+                '4':'country',
+                '-':'number',
+                '6':'email',
+                '7':'product',
+                '8':'telephone'}
 
     def __init__(self,arg = []):
 
