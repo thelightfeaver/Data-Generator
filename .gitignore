@@ -1,6 +1,7 @@
-_pycache_/
+_pycache_/*
 Dev
 /*.sql
 /*.csv
 /*.json
 /*.pyc
+*.py[cod]
