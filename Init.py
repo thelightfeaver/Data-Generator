@@ -107,8 +107,8 @@ class Data():
 
     options_sql = ['1','2','3','4','6','7','8']
     Files = ['json','sql','csv']
-    options_json = {'1':'name',
-                '2':'name',
+    options_json = {'1':'namem',
+                '2':'namef',
                 '3':'surmane',
                 '4':'country',
                 '-':'number',
