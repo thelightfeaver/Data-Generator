@@ -5,12 +5,8 @@ The Generator The Data
 File name can UPPER and lower!
 Always the item last'll be acount records!
 
-## Working
-- SQL
-- JSON
-
-## No Working
-- CVS
+## Example 
+python Init.py sql 1 2 4 1-100 10
 
 ## Options
 
@@ -20,8 +16,10 @@ Always the item last'll be acount records!
 - 4:Country
 - ?-?:Values Integer
 - 6:Email
-- 7:Product
 - 8:Telephone
+- SQL
+- JSON
 
-## Example 
-python Init.py sql 1 2 4 1-100 10
+## No Working
+- CVS
+- 7:Product
