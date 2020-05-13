@@ -22,7 +22,6 @@ class Init():
     def _prepare_to_sql(self,val = None):
         return  Sign.Comma if val in Data.options_sql  else Sign.Nothing
 
-    
     def __build_data(self):
         if self.__data.typefile == 'sql':
             cnt = ""
@@ -130,14 +129,18 @@ class Data():
         self.count = self.__get_count()
         self.options = self.__get_options()
         self.ready= self.__validate()
+        
     def __get_options(self):
         processdata = self.__arg[1:-1]
         self.__process_taginteger(dt=processdata)
         return processdata if len(processdata)  > 0 else False
+    
     def __get_count(self):
         return int(list(filter(lambda x:self.__arg[-1:][0] is x,self.__arg))[0])
+    
     def __get_typefile(self):
         return self.__arg[:1][0] if self.__arg[:1][0] in self.__typefile else False
+    
     def __process_taginteger(self,dt = []):
 
         for index,i in enumerate(dt):
@@ -147,7 +150,7 @@ class Data():
                 dt[index] = fnt
                  
     def __validate(self):
-        
+        """Validate options"""
         if bool(self.typefile) and bool(self.count) and bool(self.options) : 
             return True
         else:
