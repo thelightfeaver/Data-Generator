@@ -89,7 +89,7 @@ class DataGenerator():
     def __get_product(self):
         return random.choice(self.__listProduct)           
     
-    def __makeBodyEmail(self,body):
+    def __make_body_email(self,body):
         email = body
         listchar = ['','-','.','_','#']
         cr = random.choice(listchar)
@@ -106,8 +106,8 @@ class DataGenerator():
     
     def __get_email(self):
         email = ""
-        for x in range(0,2):
-            email += self.__makeBodyEmail(email)
+        for _ in range(0,2):
+            email += self.__make_body_email(email)
         email+= random.choice(self.__listEmail)
         return email.replace(' ','')
     
