@@ -40,6 +40,8 @@ class DataGenerator():
       
     def choose_data(self,Type):
         
+        # TODO change option get_age only one parameter
+
         if Type[0] == TypeData.GirlName.value:
             return self.__get_name_girl()
         elif Type[0] == TypeData.BoyName.value:

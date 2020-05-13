@@ -17,7 +17,7 @@ class Init():
 
     def _convert_array(self, val=None):
 
-        # TODO move in to the convert.py
+        # TODO Delete function 
         """Convert whatever data to array"""
 
         return val if type(val).__name__ == 'list' else [val]
@@ -30,7 +30,7 @@ class Init():
         return Sign.Comma if val in Data.options_sql else Sign.Nothing
 
     def __build_data(self):
-        
+
         """To Generate data according to parameter"""
 
         if self.__data.typefile == 'sql':
@@ -61,9 +61,8 @@ class Init():
                 tmp = {}
 
                 for index, val in enumerate(self.__data.options):
-
-                    key = str(
-                        Data.options_json['-' if type(val).__name__ == 'list' else val])
+                    # get key for json , conver data 
+                    key = str(Data.options_json['-' if type(val).__name__ == 'list' else val])
                     array = self._convert_array(val)
                     result = str(self._dg.choose_data(array))
                     tmp[key] = result
