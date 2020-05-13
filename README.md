@@ -9,7 +9,6 @@ Always the item last'll be acount records!
 python Init.py sql 1 2 4 1-100 10
 
 ## Options
-
 - 1:Man Name
 - 2:Woman Name
 - 3:Surname
