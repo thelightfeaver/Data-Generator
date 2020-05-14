@@ -111,7 +111,7 @@ class DataGenerator():
         elif ans == 2:
             email+= str(random.randint(0,1000000))+cr
         elif ans == 3:
-            email+= self.__get_city()+cr
+            email+= self.__get_country()+cr
         return email
     
     def __get_email(self):
