@@ -15,19 +15,19 @@ class Init():
         self._co = co()
         self.__start()
 
-    def _convert_array(self, val=None):
+    # def _convert_array(self, val=None):
 
-        # TODO Delete function
-        """Convert whatever data to array"""
+    #     # TODO Delete function
+    #     """Convert whatever data to array"""
 
-        return val if type(val).__name__ == 'list' else [val]
+    #     return val if type(val).__name__ == 'list' else [val]
 
     def _prepare_to_sql(self, val=None):
 
         # TODO move in to the convert.py
         """Prepare data for sql example """
 
-        return Sign.Comma if val in Data.options_sql else Sign.Nothing
+        return Sign.Comma if Data.Options.get(val) else Sign.Nothing
 
     def __build_data(self):
         
@@ -43,12 +43,10 @@ class Init():
 
                 if len(self.__data.options) - 1 > index:
 
-                    cnt += str(self._co.to_sign(self._dg.choose_data(self._convert_array(val)),
-                                                self._prepare_to_sql(val))) + ","
+                    cnt += str(self._co.to_sign(self._dg.choose_data(val),self._prepare_to_sql(val))) + ","
                 else:
 
-                    cnt += str(self._co.to_sign(self._dg.choose_data(self._convert_array(val)),
-                                                self._prepare_to_sql(val)))
+                    cnt += str(self._co.to_sign(self._dg.choose_data(val),self._prepare_to_sql(val)))
 
             return self._co.to_sign(cnt, Sign.Parentheses)
 
@@ -61,11 +59,9 @@ class Init():
                 tmp = {}
 
                 for index, val in enumerate(self.__data.options):
-                    # get key for json , conver data
-                    key = str(
-                        Data.options_json['-' if type(val).__name__ == 'list' else val])
-                    array = self._convert_array(val)
-                    result = str(self._dg.choose_data(array))
+                    # get key for json 
+                    key = str(Data.Options['-' if val.find("-") == 1 else val])
+                    result = str(self._dg.choose_data(val))
                     tmp[key] = result
 
                 cnt.append(tmp)
@@ -140,9 +136,9 @@ class Init():
 
 class Data():
 
-    options_sql = ['1', '2', '3', '4', '6', '7', '8']
+    # options_sql = ['1', '2', '3', '4', '6', '7', '8']
     Files = ['json', 'sql', 'csv']
-    options_json = {'1': 'namem',
+    Options = {'1': 'namem',
                     '2': 'namef',
                     '3': 'surmane',
                     '4': 'country',
@@ -169,9 +165,9 @@ class Data():
     def __get_options(self):
         """Get arguments and send to prepara for to use in generator"""
 
-        processdata = self.__arg[1:-1]
-        self.__process_taginteger(dt=processdata)
-        return processdata if len(processdata) > 0 else False
+        data = self.__arg[1:-1]
+        # self.__process_taginteger(dt=processdata)
+        return data if len(data) > 0 else False
 
     def __get_count(self):
         """Get count to generate"""
