@@ -1,5 +1,5 @@
 from enum import Enum
-from Init import Data
+
 class Sign(Enum):
     Nothing = 0
     Parentheses = 1
@@ -9,6 +9,8 @@ class Sign(Enum):
       
 def to_sign(data,sign):
     
+
+    """Encapuslate data"""
     if sign == Sign.Comma:
         return "'"+data+"'"
     elif sign == Sign.Parentheses:
@@ -19,9 +21,5 @@ def to_sign(data,sign):
         return data
             
 
-def prepare_to_sql(self, val=None):
 
-        """Prepare data for sql example """
-
-        return Sign.Comma if Data.Options.get(val) else Sign.Nothing
 

@@ -2,7 +2,7 @@ import os
 from sys import argv
 from DataGenerator import DataGenerator as dg, TypeData
 import io
-from Convert import to_sign,prepare_to_sql, Sign
+from Convert import to_sign, Sign
 import json
 
 
@@ -21,7 +21,11 @@ class Init():
 
     #     return val if type(val).__name__ == 'list' else [val]
 
-    
+    def _prepare_to_sql(self,val):
+
+        """Prepare data for sql example """
+
+        return Sign.Comma if Data.Options.get(val) else Sign.Nothing
 
     def __build_data(self):
         
@@ -37,10 +41,10 @@ class Init():
 
                 if len(self.__data.options) - 1 > index:
 
-                    cnt += str(to_sign(self._dg.choose_data(val),prepare_to_sql(val))) + ","
+                    cnt += str(to_sign(self._dg.choose_data(val),self._prepare_to_sql(val))) + ","
                 else:
 
-                    cnt += str(to_sign(self._dg.choose_data(val),prepare_to_sql(val)))
+                    cnt += str(to_sign(self._dg.choose_data(val),self._prepare_to_sql(val)))
 
             return to_sign(cnt, Sign.Parentheses)
 
