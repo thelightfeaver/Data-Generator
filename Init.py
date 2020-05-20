@@ -146,10 +146,6 @@ class Data():
         # arguments
         self.__arg = arg[1:]
 
-        # parameters
-        self.__typefile = ['json', 'sql', 'csv']
-        self.__typeoption = ['1', '2', '3', '4', '6', '7', '8']
-
         # to process arguments
         self.typefile = self.__get_typefile()
         self.count = self.__get_count()
@@ -170,8 +166,9 @@ class Data():
 
     def __get_typefile(self):
         """Get type file for to generate"""
+        
 
-        return self.__arg[:1][0] if self.__arg[:1][0] in self.__typefile else False
+        return self.__arg[:1][0] if self.__arg[:1][0] in self.Files else False
 
     def __process_taginteger(self, dt=[]):
 
@@ -185,6 +182,7 @@ class Data():
                 dt[index] = fnt
 
     def __validate(self):
+
         """Validate options"""
 
         if bool(self.typefile) and bool(self.count) and bool(self.options):
