@@ -1,5 +1,4 @@
 import random
-import Convert as cv
 from enum import Enum
 
 class TypeData(Enum):
