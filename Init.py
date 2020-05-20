@@ -2,7 +2,7 @@ import os
 from sys import argv
 from DataGenerator import DataGenerator as dg, TypeData
 import io
-from Convert import Convert as co, Sign
+from Convert import to_sign, Sign
 import json
 
 
@@ -12,7 +12,6 @@ class Init():
 
         self.__data = Data(arg)
         self._dg = dg()
-        self._co = co()
         self.__start()
 
     # def _convert_array(self, val=None):
@@ -43,12 +42,12 @@ class Init():
 
                 if len(self.__data.options) - 1 > index:
 
-                    cnt += str(self._co.to_sign(self._dg.choose_data(val),self._prepare_to_sql(val))) + ","
+                    cnt += str(to_sign(self._dg.choose_data(val),self._prepare_to_sql(val))) + ","
                 else:
 
-                    cnt += str(self._co.to_sign(self._dg.choose_data(val),self._prepare_to_sql(val)))
+                    cnt += str(to_sign(self._dg.choose_data(val),self._prepare_to_sql(val)))
 
-            return self._co.to_sign(cnt, Sign.Parentheses)
+            return to_sign(cnt, Sign.Parentheses)
 
         elif self.__data.typefile == 'json':
 
