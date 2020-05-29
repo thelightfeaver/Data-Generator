@@ -1,4 +1,5 @@
 import os
+import csv
 from sys import argv
 from DataGenerator import DataGenerator as dg, TypeData
 import io
@@ -21,14 +22,12 @@ class Init():
 
     #     return val if type(val).__name__ == 'list' else [val]
 
-    def _prepare_to_sql(self,val):
-
+    def _prepare_to_sql(self, val):
         """Prepare data for sql example """
 
         return Sign.Comma if Data.Options.get(val) else Sign.Nothing
 
     def __build_data(self):
-        
         """To Generate data according to parameter"""
 
         if self.__data.typefile == 'sql':
@@ -41,10 +40,12 @@ class Init():
 
                 if len(self.__data.options) - 1 > index:
 
-                    cnt += str(to_sign(self._dg.choose_data(val),self._prepare_to_sql(val))) + ","
+                    cnt += str(to_sign(self._dg.choose_data(val),
+                                       self._prepare_to_sql(val))) + ","
                 else:
 
-                    cnt += str(to_sign(self._dg.choose_data(val),self._prepare_to_sql(val)))
+                    cnt += str(to_sign(self._dg.choose_data(val),
+                                       self._prepare_to_sql(val)))
 
             return to_sign(cnt, Sign.Parentheses)
 
@@ -57,12 +58,21 @@ class Init():
                 tmp = {}
 
                 for index, val in enumerate(self.__data.options):
-                    # get key for json 
+                    # get key for json
                     key = str(Data.Options['-' if val.find("-") == 1 else val])
                     result = str(self._dg.choose_data(val))
                     tmp[key] = result
 
                 cnt.append(tmp)
+
+            return cnt
+
+        elif self.__data.typefile == 'csv':
+
+            cnt = []
+
+            for index, val in enumerate(self.__data.options):
+                cnt.append(self._dg.choose_data(val))
 
             return cnt
 
@@ -90,6 +100,14 @@ class Init():
 
                 result = self.__build_data()
                 json.dump(result, file)
+
+        elif self.__data.typefile == "csv":
+
+            with open('result.csv', 'w', newline='') as file:
+                writer = csv.writer(file, delimiter='|', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                for _ in range(0, self.__data.count):
+                    result = self.__build_data()
+                    writer.writerow(result)
 
     def __start(self):
 
@@ -170,7 +188,6 @@ class Data():
 
     def __get_typefile(self):
         """Get type file for to generate"""
-        
 
         return self.__arg[:1][0] if self.__arg[:1][0] in self.Files else False
 
@@ -186,7 +203,6 @@ class Data():
                 dt[index] = fnt
 
     def __validate(self):
-
         """Validate options"""
 
         if bool(self.typefile) and bool(self.count) and bool(self.options):
