@@ -18,7 +18,8 @@ python Init.py sql 1 2 4 1-100 10
 - 8:Telephone
 - SQL
 - JSON
+- CSV
 
 ## No Working
-- CVS
+
 - 7:Product
