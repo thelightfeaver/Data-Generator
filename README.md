@@ -2,7 +2,7 @@
 The Generator The Data
 
 ## Note: 
-File name can UPPER and lower!
+File name can be UPPER and lower!
 Always the item last'll be acount records!
 
 ## Example 
